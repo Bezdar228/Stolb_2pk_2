@@ -3,20 +3,20 @@
     internal class Program
     {
         static void Main(string[] args)
+      
         {
-            Account account = new Account(
-                id: 228,
-                username: "Tomas Shelby",
-                email: "Bebra.1132.@mai.ru",
-                password: "154331trwqsaf12356236",
-                registrationDate: DateTime.Now);
+            var acc1 = new Account(1, "email1@example.com", "Флоппа1", "фвйцкайа1");
+            var acc2 = new Account(2, "email2@example.com", "Гарфилд", "йцуйуй", new DateTime(2022, 1, 1));
+            var acc3 = new Account(3, "email3@example.com", "ыфвфвфвф");
+            var acc4 = new Account(4, "email4@example.com");
 
-            Console.WriteLine($"Account Id: {account.Id}");
-            Console.WriteLine($"Username: {account.Username}");
-            Console.WriteLine($"Email: {account.Email}");
-            Console.WriteLine($"Password: {account.Password}");
-            Console.WriteLine($"Registration Date: {account.RegistrationDate}");
-
+            acc1.PrintInfo();
+            Console.WriteLine();
+            acc2.PrintInfo();
+            Console.WriteLine();
+            acc3.PrintInfo();
+            Console.WriteLine();
+            acc4.PrintInfo();
         }
     }
 }
