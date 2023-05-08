@@ -8,7 +8,7 @@ namespace pz_28
 {
     internal class Wait
     {
-        private readonly int _valueToWaitFor;
+        private  int _valueToWaitFor;
 
         public Wait(int valueToWaitFor)
         {
