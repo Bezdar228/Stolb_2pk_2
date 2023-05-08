@@ -6,22 +6,9 @@ using System.Threading.Tasks;
 
 namespace pz_23
 {
-    class DeletedAccount : Account
+    public class DeletedAccount : Account
     {
-        private string _deletionReason;
-
-        public string DeletionReason
-        {
-            get { return _deletionReason; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Deletion reason cannot be empty or whitespace.");
-                }
-                _deletionReason = value;
-            }
-        }
+        public string DeletionReason { get; set; }
 
         public DeletedAccount(int id, string email, string login, string pass, DateTime registrationDate, string deletionReason)
             : base(id, email, login, pass, registrationDate)
@@ -29,9 +16,10 @@ namespace pz_23
             DeletionReason = deletionReason;
         }
 
-        public override string PrintInfo()
+        public override void PrintInfo()
         {
-            return base.PrintInfo() + $", Deletion reason: {DeletionReason}";
+            base.PrintInfo();
+            Console.WriteLine($"Deletion reason: {DeletionReason}");
         }
     }
 }
