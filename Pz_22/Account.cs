@@ -1,83 +1,170 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pz_22
 {
-    public class Account
+    class Account
     {
-        private int _id;
-        private string _username;
-        private string _email;
-        private string _password;
-        private DateTime _registrationDate;
-        private bool _isAdmin;
+        private int id;
+        private string email;
+        private string login;
+        private string pass;
+        private DateTime registrationDate;
 
-        public int Id
+        private static int accountsSince2020;
+
+        public int ID
         {
-            get { return _id; }
+            get { return id; }
             set
             {
-                if (value <= 0)
+                if (value != null)
                 {
-                    throw new ArgumentException("Id должно быть больше нуля");
+                    id = value;
                 }
-                _id = value;
-            }
-        }
-
-        public string Username
-        {
-            get { return _username; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
+                else
                 {
-                    throw new ArgumentException("Имя пользователя не может быть пустым или null");
+                    throw new ArgumentNullException("ID cannot be null.");
                 }
-                _username = value;
             }
         }
 
         public string Email
         {
-            get { return _email; }
+            get { return email; }
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Email не может быть пустым или нулевым");
+                    email = value;
                 }
-                _email = value;
+                else
+                {
+                    throw new ArgumentException("Email cannot be null or empty.");
+                }
             }
         }
 
-        public string Password
+        public string Login
         {
-            get { return _password; }
+            get { return login; }
             set
             {
-                if (value == null || value.Length < 8 || !value.Any(char.IsDigit) || !value.Any(c => "!#@".Contains(c)))
+                if (!string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Пароль должен состоять как минимум из 8 символов и содержать как минимум одну цифру и один из следующих символов: !#@");
+                    login = value;
                 }
-                _password = value;
+                else
+                {
+                    throw new ArgumentException("Login cannot be null or empty.");
+                }
             }
         }
 
-        public DateTime RegistrationDate { get; set; }
-        public bool IsAdmin { get; set; }
-
-        public Account(int id, string username, string email, string password, DateTime registrationDate, bool isAdmin)
+        public string Pass
         {
-            Id = id;
-            Username = username;
+            get { return pass; }
+            set
+            {
+                if (value.Length >= 8 && ContainsDigits(value) && ContainsLetters(value) && ContainsSymbols(value))
+                {
+                    pass = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Password must be at least 8 characters long and contain digits, letters, and symbols !#@.");
+                }
+            }
+        }
+
+        public DateTime RegistrationDate
+        {
+            get { return registrationDate; }
+            set
+            {
+                if (value >= new DateTime(2000, 1, 1) && value <= new DateTime(2022, 1, 1))
+                {
+                    registrationDate = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Registration date must be between 01.01.2000 and 01.01.2022.");
+                }
+            }
+        }
+
+        public static int AccountsSince2020
+        {
+            get { return accountsSince2020; }
+        }
+
+        public Account(int id, string email, string login, string pass, DateTime registrationDate)
+        {
+            ID = id;
             Email = email;
-            Password = password;
+            Login = login;
+            Pass = pass;
             RegistrationDate = registrationDate;
-            IsAdmin = isAdmin;
+
+            if (registrationDate.Year >= 2020)
+            {
+                accountsSince2020++;
+            }
         }
+
+        public Account(int id, string email, string login, string pass)
+            : this(id, email, login, pass, DateTime.Now)
+        {
+        }
+
+        public Account(int id, string email, string login)
+            : this(id, email, login, "password123")
+        {
+        }
+
+        public Account(int id, string email)
+            : this(id, email, "user123")
+        {
+        }
+
+        public void PrintInfo()
+        {
+            Console.WriteLine($"ID: {ID}");
+            Console.WriteLine($"Email: {Email}");
+            Console.WriteLine($"Login: {Login}");
+            Console.WriteLine($"Password: {Pass}");
+            Console.WriteLine($"Registration date: {RegistrationDate.ToShortDateString()}");
+        }
+
+        private bool ContainsDigits(string str)
+        {
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ContainsLetters(string str)
+        {
+            foreach (char c in str)
+            {
+                if (Char.IsLetter(c))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ContainsSymbols(string str)
+        {
+            return str.Contains("!") || str.Contains("#");
+
+
+
+    }
     }
 }
