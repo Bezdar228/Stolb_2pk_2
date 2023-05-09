@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>pz_26._1</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\bold.png" />
+    <None Remove="Icons\italic.png" />
+    <None Remove="Icons\savet.png" />
+    <None Remove="Icons\success.png" />
+    <None Remove="Icons\trash.png" />
+    <None Remove="Icons\underline.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\bold.png" />
+    <Resource Include="Icons\italic.png" />
+    <Resource Include="Icons\savet.png" />
+    <Resource Include="Icons\success.png" />
+    <Resource Include="Icons\trash.png" />
+    <Resource Include="Icons\underline.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+</Project>
