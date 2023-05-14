@@ -8,13 +8,13 @@ namespace pz_28
 {
     internal class Counter
     {
-        public event Action<int> NumberGenerated; // событие генерации числа
+        public event Action<int> NumberGenerated; 
 
         public void GenerateNumbers()
         {
             for (int i = 1; i <= 1000; i++)
             {
-                NumberGenerated?.Invoke(i); // вызов события генерации числа
+                NumberGenerated?.Invoke(i); 
             }
         }
     }

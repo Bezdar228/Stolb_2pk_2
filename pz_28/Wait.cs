@@ -17,7 +17,7 @@ namespace pz_28
 
         public void WaitForValue(Counter counter)
         {
-            counter.NumberGenerated += OnNumberGenerated; // подписываемся на событие генерации числа
+            counter.NumberGenerated += OnNumberGenerated; 
         }
 
         private void OnNumberGenerated(int number)

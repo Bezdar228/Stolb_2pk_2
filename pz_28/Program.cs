@@ -11,7 +11,7 @@
             wait200.WaitForValue(counter);
             wait800.WaitForValue(counter);
 
-            // запускаем генерацию чисел в отдельном потоке
+           
             Thread counterThread = new Thread(counter.GenerateNumbers);
             counterThread.Start();
 
